@@ -1,0 +1,1 @@
+{"product_id": "PROD001", "open_orders": [{"order_id": "PO-2024-001", "quantity": 300, "expected_delivery_days": 2, "status": "confirmed"}], "total_incoming": 300}
