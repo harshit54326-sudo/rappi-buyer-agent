@@ -19,18 +19,18 @@ def run_agent(qty):
     cost = qty * sup["price_per_unit"]
 
     if need <= 0:
-        decision, approved, confidence = "REJECT", 0, 95
+        decision, approved, confidence = "REJECT", 0, 0.95
         reasoning = f"Stock {inv['current_stock']} + incoming {po['total_incoming']} = {covered} already covers demand {dem['forecast_7_days']}"
     elif cost > bud["available_budget"]:
         approved = int(bud["available_budget"] // sup["price_per_unit"])
-        decision, confidence = "MODIFY", 80
+        decision, confidence = "MODIFY", 0.80
         reasoning = f"Budget exceeded. Reduced to {approved} units"
     elif qty > bud["storage_capacity_remaining"]:
         approved = bud["storage_capacity_remaining"]
-        decision, confidence = "MODIFY", 85
+        decision, confidence = "MODIFY", 0.85
         reasoning = f"Storage limit. Reduced to {approved} units"
     else:
-        approved, decision, confidence = qty, "ACCEPT", 90
+        approved, decision, confidence = qty, "ACCEPT", 0.90
         reasoning = "All checks passed"
 
     val_cost = approved * sup["price_per_unit"]
